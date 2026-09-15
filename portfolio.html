@@ -5,7 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>The Planners — Portfolio</title>
   <meta name="robots" content="noindex, nofollow" />
-  <link rel="icon" href="assets/favicon-draft.svg" type="image/svg+xml" />
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+  <link rel="icon" href="assets/favicon-32.png" type="image/png" sizes="32x32" />
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
+  <meta property="og:image" content="https://the-planners-site.netlify.app/assets/og-default.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="https://the-planners-site.netlify.app/assets/og-default.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@500;600&display=swap" rel="stylesheet" />
@@ -107,9 +112,15 @@
       overflow: hidden;
     }
     .tile-visual {
-      height: 10rem;
-      background: linear-gradient(135deg, var(--color-primary, #D4C4A8) 0%, #c4b498 50%, #3D4A3A 100%);
-      opacity: 0.55;
+      height: 12rem;
+      overflow: hidden;
+      background: var(--color-primary-light);
+    }
+    .tile-visual img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
     }
     .tile-body { padding: var(--space-4); }
     .tile-body h2 {
@@ -186,60 +197,92 @@
     <main>
       <div class="page-intro">
         <p class="placeholder-note">Portfolio</p>
-        <h1>Portfolio</h1>
+        <h1>Stage designs</h1>
         <p class="lead">
-          A curated look at the kinds of occasions we plan. Placeholder tiles show event type and season only—no client names.
+          A curated look at signature stage looks from our design library—design names only, no client names.
         </p>
       </div>
 
-      <!-- Placeholder tiles: type / season only. No client names, budgets, or private details. -->
       <div class="tile-grid">
         <article class="tile">
-          <div class="tile-visual" aria-hidden="true"></div>
+          <div class="tile-visual">
+            <img src="assets/portfolio/mughal-pearl-palace.jpg" alt="Mughal Pearl Palace stage design" loading="lazy" />
+          </div>
           <div class="tile-body">
-            <h2>Wedding</h2>
-            <p>Intimate ceremony and reception</p>
-            <p class="tile-meta">Spring</p>
+            <h2>Mughal Pearl Palace</h2>
+            <p class="tile-meta">Stage design</p>
           </div>
         </article>
         <article class="tile">
-          <div class="tile-visual" aria-hidden="true"></div>
+          <div class="tile-visual">
+            <img src="assets/portfolio/sunehri-sheesh-mahal.jpg" alt="Sunehri Sheesh Mahal stage design" loading="lazy" />
+          </div>
           <div class="tile-body">
-            <h2>Milestone celebration</h2>
-            <p>Evening gathering</p>
-            <p class="tile-meta">Autumn</p>
+            <h2>Sunehri Sheesh Mahal</h2>
+            <p class="tile-meta">Stage design</p>
           </div>
         </article>
         <article class="tile">
-          <div class="tile-visual" aria-hidden="true"></div>
+          <div class="tile-visual">
+            <img src="assets/portfolio/noor-e-mahal.jpg" alt="Noor-e-Mahal stage design" loading="lazy" />
+          </div>
           <div class="tile-body">
-            <h2>Private dinner</h2>
-            <p>Refined seated occasion</p>
-            <p class="tile-meta">Winter</p>
+            <h2>Noor-e-Mahal</h2>
+            <p class="tile-meta">Stage design</p>
           </div>
         </article>
         <article class="tile">
-          <div class="tile-visual" aria-hidden="true"></div>
+          <div class="tile-visual">
+            <img src="assets/portfolio/arabic-regal.jpg" alt="Arabic Regal stage design" loading="lazy" />
+          </div>
           <div class="tile-body">
-            <h2>Corporate gathering</h2>
-            <p>Polished hosted event</p>
-            <p class="tile-meta">Summer</p>
+            <h2>Arabic Regal</h2>
+            <p class="tile-meta">Stage design</p>
           </div>
         </article>
         <article class="tile">
-          <div class="tile-visual" aria-hidden="true"></div>
+          <div class="tile-visual">
+            <img src="assets/portfolio/mughal-legacy.jpg" alt="Mughal Legacy stage design" loading="lazy" />
+          </div>
           <div class="tile-body">
-            <h2>Wedding</h2>
-            <p>Garden celebration</p>
-            <p class="tile-meta">Late summer</p>
+            <h2>Mughal Legacy</h2>
+            <p class="tile-meta">Stage design</p>
           </div>
         </article>
         <article class="tile">
-          <div class="tile-visual" aria-hidden="true"></div>
+          <div class="tile-visual">
+            <img src="assets/portfolio/imperial-aureus.jpg" alt="Imperial Aureus stage design" loading="lazy" />
+          </div>
           <div class="tile-body">
-            <h2>Private celebration</h2>
-            <p>Daytime reception</p>
-            <p class="tile-meta">Spring</p>
+            <h2>Imperial Aureus</h2>
+            <p class="tile-meta">Stage design</p>
+          </div>
+        </article>
+        <article class="tile">
+          <div class="tile-visual">
+            <img src="assets/portfolio/royal-elegance.jpg" alt="Royal Elegance stage design" loading="lazy" />
+          </div>
+          <div class="tile-body">
+            <h2>Royal Elegance</h2>
+            <p class="tile-meta">Stage design</p>
+          </div>
+        </article>
+        <article class="tile">
+          <div class="tile-visual">
+            <img src="assets/portfolio/floral-pillars.jpg" alt="Floral Pillars stage design" loading="lazy" />
+          </div>
+          <div class="tile-body">
+            <h2>Floral Pillars</h2>
+            <p class="tile-meta">Stage design</p>
+          </div>
+        </article>
+        <article class="tile">
+          <div class="tile-visual">
+            <img src="assets/portfolio/via-roma-classic.jpg" alt="Via Roma Classic stage design" loading="lazy" />
+          </div>
+          <div class="tile-body">
+            <h2>Via Roma Classic</h2>
+            <p class="tile-meta">Stage design</p>
           </div>
         </article>
       </div>
