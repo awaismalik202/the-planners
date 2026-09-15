@@ -86,22 +86,6 @@
       color: var(--color-text-muted);
       margin: 0 0 var(--space-4);
     }
-    .contact-card {
-      background: var(--color-surface);
-      border: 1px solid var(--color-border);
-      border-radius: var(--radius);
-      padding: var(--space-5);
-      margin-bottom: var(--space-4);
-    }
-    .contact-card h2 {
-      font-family: var(--font-display);
-      font-weight: 500;
-      font-size: var(--text-h3);
-      margin: 0 0 var(--space-3);
-    }
-    .contact-card p { margin: 0 0 var(--space-2); line-height: 1.6; }
-    .contact-card a { color: var(--color-accent); }
-
     .sr-only {
       position: absolute;
       width: 1px;
@@ -190,17 +174,58 @@
       margin-top: var(--space-1);
     }
     .btn {
-      /* shared styles in site.css; keep local submit color fallback */
       background: var(--color-accent);
       color: #fff;
       border-color: var(--color-accent);
     }
     .btn:hover { background: #2f392d; border-color: #2f392d; color: #fff; }
+    .more-details {
+      margin: 0 0 var(--space-4);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius);
+      padding: var(--space-3) var(--space-4);
+      background: #fff;
+    }
+    .more-details summary {
+      cursor: pointer;
+      font-weight: 600;
+      font-size: var(--text-small);
+      color: var(--color-text);
+      list-style: none;
+    }
+    .more-details summary::-webkit-details-marker { display: none; }
+    .more-details summary::before {
+      content: "+ ";
+      color: var(--color-accent);
+      font-weight: 700;
+    }
+    .more-details[open] summary::before { content: "− "; }
+    .more-details summary .opt { font-weight: 400; color: var(--color-text-muted); }
+    .more-details .field { margin-top: var(--space-4); }
     .form-note {
       margin-top: var(--space-4);
       font-size: var(--text-small);
       color: var(--color-text-muted);
     }
+    .thanks {
+      display: none;
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius);
+      padding: var(--space-5);
+    }
+    .thanks.is-visible { display: block; }
+    .thanks h2 {
+      font-family: var(--font-display);
+      font-weight: 500;
+      font-size: var(--text-h3);
+      margin: 0 0 var(--space-3);
+    }
+    .thanks p { margin: 0 0 var(--space-3); color: var(--color-text-muted); }
+    body.is-thanks .inquiry-intro,
+    body.is-thanks form.inquiry { display: none; }
+    body.is-thanks .thanks { display: block; }
+    body.is-thanks .layout { grid-template-columns: 1fr; max-width: 36rem; }
     footer.site {
       border-top: 1px solid var(--color-border);
       padding: var(--space-5) 0 var(--space-6);
@@ -235,30 +260,40 @@
         <a href="/about">About</a>
         <a href="/portfolio">Portfolio</a>
         <a href="/inquiry" aria-current="page">Contact</a>
+              <a class="nav-cta" href="/inquiry">Book a consult</a>
       </nav>
     </header>
 
     <main id="main" class="layout">
-      <div>
-<h1>Contact</h1>
+      <div class="inquiry-intro">
+        <h1>Book a consult</h1>
         <p class="intro">
-          Reach out directly, or use the inquiry form. Required fields match Monica’s locked ops map.
+          Tell us a little about your occasion and we’ll be in touch.
           <strong>We’ll reply within 1 business day.</strong>
-          Intake is email to <a href="mailto:abdulmoeed095@gmail.com">abdulmoeed095@gmail.com</a> (mailto client; Netlify Forms or similar can replace later).
         </p>
-        <div class="contact-card">
-          <h2>Studio contact</h2>
-          <p><strong>Muhammad Awais Malik</strong></p>
-          <p>Islamabad</p>
-          <p><a href="tel:+923170159441">+92 317 0159441</a></p>
-          <p><a href="mailto:abdulmoeed095@gmail.com">abdulmoeed095@gmail.com</a></p>
-          <p><a href="https://www.instagram.com/daplanners.co/" target="_blank" rel="noopener">Instagram · @daplanners.co</a></p>
-          <p>LinkedIn — coming soon</p>
-        </div>
       </div>
 
-      <!-- Fields per inquiry-form.md (Monica lock). Intake: mailto abdulmoeed095@gmail.com -->
-      <form class="inquiry" id="inquiry-form" action="mailto:abdulmoeed095@gmail.com" method="post" enctype="text/plain" novalidate>
+      <div class="thanks" id="thanks" role="status">
+        <h2>Thank you</h2>
+        <p>We’ve received your inquiry and will reply within 1 business day.</p>
+        <p><a class="btn btn-primary" href="/">Back to home</a></p>
+      </div>
+
+      <form
+        class="inquiry"
+        id="inquiry-form"
+        name="inquiry"
+        method="POST"
+        data-netlify="true"
+        netlify-honeypot="bot-field"
+        action="/inquiry?thanks=1"
+        novalidate
+      >
+        <input type="hidden" name="form-name" value="inquiry" />
+        <p class="sr-only" aria-hidden="true">
+          <label>Don’t fill this out if you’re human: <input name="bot-field" tabindex="-1" autocomplete="off" /></label>
+        </p>
+
         <p class="hint" id="form-req-note" style="margin-top:0;margin-bottom:var(--space-4);">Required fields are marked with an asterisk (<span aria-hidden="true">*</span>).</p>
         <div class="form-error" id="form-error" role="alert" tabindex="-1"></div>
 
@@ -270,7 +305,7 @@
         <div class="field">
           <label for="email">Email <span class="req" aria-hidden="true">*</span><span class="sr-only"> (required)</span></label>
           <input id="email" name="email" type="email" required aria-required="true" autocomplete="email" aria-describedby="email-hint" />
-          <p class="hint" id="email-hint">Primary contact. Phone is optional — submit succeeds with email only.</p>
+          <p class="hint" id="email-hint">We’ll use this to reply. Phone is optional.</p>
         </div>
 
         <div class="field">
@@ -299,7 +334,7 @@
               <input type="checkbox" id="date-flexible" name="date_flexible" value="TBD / flexible" />
               TBD / flexible
             </label>
-            <p class="hint" id="date-hint">Required: choose a specific date <strong>or</strong> TBD / flexible (one of the two).</p>
+            <p class="hint" id="date-hint">Please choose a specific date <strong>or</strong> TBD / flexible.</p>
           </fieldset>
         </div>
 
@@ -319,35 +354,37 @@
           </select>
         </div>
 
-        <div class="field">
-          <label for="budget">Budget range <span class="opt">(optional)</span></label>
-          <select id="budget" name="budget_range" aria-describedby="budget-hint">
-            <option value="">Select…</option>
-            <option value="prefer-discuss">Prefer to discuss</option>
-            <option value="under-5l">Under PKR 5L</option>
-            <option value="5-15l">5–15L</option>
-            <option value="15-40l">15–40L</option>
-            <option value="40l-plus">40L+</option>
-          </select>
-          <p class="hint" id="budget-hint">Never publish budget on public pages.</p>
-        </div>
+        <details class="more-details">
+          <summary>Add more details <span class="opt">(optional)</span></summary>
+          <div class="field">
+            <label for="budget">Budget range <span class="opt">(optional)</span></label>
+            <select id="budget" name="budget_range" aria-describedby="budget-hint">
+              <option value="">Select…</option>
+              <option value="prefer-discuss">Prefer to discuss</option>
+              <option value="under-5l">Under PKR 5L</option>
+              <option value="5-15l">5–15L</option>
+              <option value="15-40l">15–40L</option>
+              <option value="40l-plus">40L+</option>
+            </select>
+            <p class="hint" id="budget-hint">We’ll keep your details private.</p>
+          </div>
 
-        <div class="field">
-          <label for="theme">Theme / style notes <span class="opt">(optional)</span></label>
-          <textarea id="theme" name="theme_style" rows="3" placeholder="Mood, palette, references…"></textarea>
-        </div>
+          <div class="field">
+            <label for="theme">Theme / style notes <span class="opt">(optional)</span></label>
+            <textarea id="theme" name="theme_style" rows="3" placeholder="Mood, palette, references…"></textarea>
+          </div>
 
-        <div class="field">
-          <label for="notes">Anything else <span class="opt">(optional)</span></label>
-          <textarea id="notes" name="free_text" rows="4" placeholder="Constraints, must-haves, questions…" aria-describedby="notes-hint"></textarea>
-          <p class="hint" id="notes-hint">Please do not paste sensitive documents into this field.</p>
-        </div>
+          <div class="field">
+            <label for="notes">Anything else <span class="opt">(optional)</span></label>
+            <textarea id="notes" name="free_text" rows="4" placeholder="Must-haves, questions, or anything else you’d like us to know…" aria-describedby="notes-hint"></textarea>
+            <p class="hint" id="notes-hint">We’ll keep your details private.</p>
+          </div>
+        </details>
 
         <button class="btn btn-primary" type="submit">Send inquiry</button>
         <p class="form-note">
           <strong>We’ll reply within 1 business day.</strong>
-          Submissions go to <a href="mailto:abdulmoeed095@gmail.com">abdulmoeed095@gmail.com</a> (mailto intake).
-          Privacy: inquiry data stays in ops intake, not on public pages.
+          We’ll keep your details private.
         </p>
       </form>
     </main>
@@ -361,8 +398,7 @@
             Muhammad Awais Malik · Islamabad<br />
             <a href="tel:+923170159441">+92 317 0159441</a> ·
             <a href="mailto:abdulmoeed095@gmail.com">abdulmoeed095@gmail.com</a><br />
-            <a href="https://www.instagram.com/daplanners.co/" target="_blank" rel="noopener">Instagram · @daplanners.co</a><br />
-            LinkedIn — coming soon
+            <a href="https://www.instagram.com/daplanners.co/" target="_blank" rel="noopener">Instagram · @daplanners.co</a>
           </div>
         </div>
         <nav aria-label="Footer">
@@ -378,6 +414,13 @@
 
   <script>
     (function () {
+      var params = new URLSearchParams(window.location.search);
+      if (params.get('thanks') === '1') {
+        document.body.classList.add('is-thanks');
+        var thanks = document.getElementById('thanks');
+        if (thanks) thanks.focus();
+      }
+
       var dateInput = document.getElementById('event-date');
       var flexible = document.getElementById('date-flexible');
       var form = document.getElementById('inquiry-form');
@@ -444,9 +487,7 @@
           event.preventDefault();
           showError('Please choose a date or select TBD / flexible.');
           dateInput.focus();
-          return;
         }
-        // mailto opens the visitor's email client for intake
       });
     })();
   </script>

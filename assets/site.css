@@ -266,3 +266,29 @@ button.lightbox-trigger:focus-visible {
   outline: 2px solid var(--color-accent);
   outline-offset: 2px;
 }
+
+
+/* Header primary CTA */
+nav.primary-nav a.nav-cta {
+  margin-left: var(--space-4);
+  padding: 0.5rem 0.95rem;
+  background: var(--color-accent);
+  color: #fff !important;
+  border-radius: var(--radius);
+  border: 1px solid var(--color-accent);
+  font-weight: 600;
+}
+nav.primary-nav a.nav-cta:hover,
+nav.primary-nav a.nav-cta[aria-current="page"] {
+  background: #2f392d;
+  border-color: #2f392d;
+  color: #fff !important;
+}
+@media (max-width: 720px) {
+  nav.primary-nav a.nav-cta {
+    margin-left: 0;
+    margin-top: var(--space-2);
+    text-align: center;
+    justify-content: center;
+  }
+}

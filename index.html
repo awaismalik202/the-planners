@@ -66,28 +66,111 @@
       margin: 0 auto;
       padding: 0 var(--gutter);
     }
+    /* Brand-led framed hero: empty left/top for live Playfair (no baked wordmark) */
     .hero {
-      padding: var(--space-7) 0 var(--space-6);
-      text-align: center;
+      position: relative;
+      margin: 0 calc(-1 * var(--gutter));
+      min-height: clamp(24rem, 56vw, 34rem);
+      padding: clamp(3rem, 6vw, 4.5rem) var(--gutter);
+      overflow: hidden;
+      isolation: isolate;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      color: var(--color-text);
+      background-color: #f3eee6;
+    }
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -2;
+      background-image: url("assets/hero/home-hero-mughal-pearl-palace.jpg");
+      background-size: cover;
+      background-position: right center;
+      background-repeat: no-repeat;
+    }
+    /* Soft scrim only over copy field for Playfair contrast */
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      pointer-events: none;
+      background: linear-gradient(
+        90deg,
+        rgba(247, 243, 237, 0.72) 0%,
+        rgba(247, 243, 237, 0.42) 42%,
+        rgba(247, 243, 237, 0.08) 62%,
+        transparent 78%
+      );
+    }
+    .hero-copy {
+      position: relative;
+      z-index: 1;
+      max-width: min(28rem, 48%);
+      text-align: left;
     }
     .hero h1 {
       font-family: var(--font-display);
       font-weight: 500;
-      font-size: var(--text-h1);
+      font-size: clamp(2rem, 4.2vw, var(--text-h1));
       line-height: var(--leading-tight);
       margin: 0 0 var(--space-3);
+      color: var(--color-text);
+      max-width: 14ch;
     }
     .hero .lead {
       font-size: var(--text-lead);
       color: var(--color-text-muted);
-      max-width: 36rem;
-      margin: 0 auto var(--space-5);
+      max-width: 28rem;
+      margin: 0 0 var(--space-5);
     }
     .hero .cta-row {
       display: flex;
       flex-wrap: wrap;
       gap: var(--space-3);
-      justify-content: center;
+      justify-content: flex-start;
+    }
+    @media (max-width: 720px) {
+      .hero {
+        min-height: clamp(34rem, 145vw, 44rem);
+        align-items: flex-start;
+        padding-top: clamp(2.25rem, 7vw, 3rem);
+        padding-bottom: clamp(2rem, 8vw, 3rem);
+      }
+      .hero::before {
+        background-image: url("assets/hero/home-hero-mughal-pearl-palace-mobile.jpg");
+        background-position: center top;
+        background-size: cover;
+      }
+      .hero::after {
+        background: linear-gradient(
+          180deg,
+          rgba(247, 243, 237, 0.88) 0%,
+          rgba(247, 243, 237, 0.7) 22%,
+          rgba(247, 243, 237, 0.28) 38%,
+          transparent 52%
+        );
+      }
+      .hero-copy {
+        max-width: 100%;
+        text-align: center;
+      }
+      .hero h1 {
+        max-width: 16ch;
+        margin-left: auto;
+        margin-right: auto;
+        font-size: clamp(1.85rem, 7.5vw, 2.4rem);
+      }
+      .hero .lead {
+        margin-left: auto;
+        margin-right: auto;
+      }
+      .hero .cta-row { justify-content: center; }
+    }
+    section.block:first-of-type {
+      padding-top: var(--space-6);
     }
     section.block {
       padding: var(--space-6) 0;
@@ -178,18 +261,21 @@
         <a href="/about">About</a>
         <a href="/portfolio">Portfolio</a>
         <a href="/inquiry">Contact</a>
+              <a class="nav-cta" href="/inquiry">Book a consult</a>
       </nav>
     </header>
 
     <main id="main">
-      <section class="hero">
-<h1>Occasions that feel considered, calm, and distinctly yours.</h1>
-        <p class="lead">
-          An event planning studio bringing structure to beauty—so hosts can stay present while every detail lands with intention.
-        </p>
-        <div class="cta-row">
-          <a class="btn btn-primary" href="/inquiry">Book a Consult</a>
-          <a class="btn btn-secondary" href="/services">Explore services</a>
+      <section class="hero" aria-label="Welcome">
+        <div class="hero-copy">
+          <h1>Occasions that feel considered, calm, and distinctly yours.</h1>
+          <p class="lead">
+            An event planning studio bringing structure to beauty—so hosts can stay present while every detail lands with intention.
+          </p>
+          <div class="cta-row">
+            <a class="btn btn-primary" href="/inquiry">Book a consult</a>
+            <a class="btn btn-secondary" href="/services">Explore services</a>
+          </div>
         </div>
       </section>
 
@@ -210,7 +296,7 @@
           </div>
           <div class="card">
             <h3>Décor &amp; rentals</h3>
-            <p>Styling and rentals support—overview only; no SKUs or public prices.</p>
+            <p>Styling and rentals support shaped around your occasion.</p>
           </div>
         </div>
         <p style="margin-top:var(--space-4);"><a class="btn btn-secondary" href="/services">View all services</a></p>
@@ -242,7 +328,7 @@
       <div class="cta-band">
         <h2>Ready to begin?</h2>
         <p>Share a few details about your occasion, or reach out directly.</p>
-        <a class="btn btn-primary" href="/inquiry">Inquire</a>
+        <a class="btn btn-primary" href="/inquiry">Book a consult</a>
       </div>
     </main>
 
@@ -255,8 +341,7 @@
             Muhammad Awais Malik · Islamabad<br />
             <a href="tel:+923170159441">+92 317 0159441</a> ·
             <a href="mailto:abdulmoeed095@gmail.com">abdulmoeed095@gmail.com</a><br />
-            <a href="https://www.instagram.com/daplanners.co/" target="_blank" rel="noopener">Instagram · @daplanners.co</a><br />
-            LinkedIn — coming soon
+            <a href="https://www.instagram.com/daplanners.co/" target="_blank" rel="noopener">Instagram · @daplanners.co</a>
           </div>
         </div>
         <nav aria-label="Footer">
