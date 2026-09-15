@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  The Planners — Wordmark (light backgrounds)
+  STATUS: DRAFT — not final / not client-facing
+  Font: Playfair Display (Google Fonts) with Georgia fallback
+  Use: headers, light UI chrome. Requires Playfair Display loaded in host document,
+       or system Georgia fallback will render until webfont arrives.
+-->
+<svg xmlns="http://www.w3.org/2000/svg"
+     viewBox="0 0 480 72"
+     role="img"
+     aria-label="The Planners (draft wordmark)">
+  <title>The Planners — Wordmark DRAFT (light)</title>
+  <desc>DRAFT brand wordmark. High-contrast modern serif. Not approved for client use.</desc>
+  <metadata>
+    <![CDATA[
+      brand: The Planners
+      asset: logo-wordmark-light
+      status: DRAFT
+      color: #1C1917 on transparent
+    ]]>
+  </metadata>
+  <text x="240" y="48"
+        text-anchor="middle"
+        font-family="'Playfair Display', Georgia, 'Times New Roman', serif"
+        font-size="42"
+        font-weight="500"
+        letter-spacing="0.12em"
+        fill="#1C1917">The Planners</text>
+</svg>

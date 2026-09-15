@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>The Planners — Home</title>
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="icon" href="assets/favicon-draft.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/tokens.css" />
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: var(--font-sans);
+      font-size: var(--text-body);
+      line-height: var(--leading-normal);
+      background: var(--color-bg);
+      color: var(--color-text);
+    }
+    .draft-banner {
+      background: var(--color-surface, #f5f3ef);
+      color: var(--color-muted, #6b6560);
+      text-align: center;
+      padding: 0.35rem 1rem;
+      font-size: 0.7rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      font-weight: 500;
+      border-bottom: 1px solid var(--color-border, #e5e1da);
+    }
+    .wrap {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 var(--gutter);
+    }
+    header.site {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-4);
+      padding: var(--space-4) 0;
+      border-bottom: 1px solid var(--color-border);
+      flex-wrap: wrap;
+    }
+    header.site img.logo { height: 2rem; width: auto; display: block; }
+    nav a {
+      color: var(--color-text-muted);
+      text-decoration: none;
+      font-size: var(--text-small);
+      margin-left: var(--space-3);
+      font-weight: 500;
+    }
+    nav a:hover, nav a[aria-current="page"] { color: var(--color-text); }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-sans);
+      font-weight: 600;
+      font-size: 0.9375rem;
+      padding: 0.75rem 1.5rem;
+      border-radius: var(--radius);
+      border: 1px solid transparent;
+      text-decoration: none;
+      letter-spacing: 0.01em;
+    }
+    .btn-primary { background: var(--color-accent); color: #fff; }
+    .btn-primary:hover { background: #2f392d; }
+    .btn-secondary {
+      background: transparent;
+      color: var(--color-accent);
+      border-color: var(--color-accent);
+    }
+    .hero {
+      padding: var(--space-7) 0 var(--space-6);
+      text-align: center;
+    }
+    .hero h1 {
+      font-family: var(--font-display);
+      font-weight: 500;
+      font-size: var(--text-h1);
+      line-height: var(--leading-tight);
+      margin: 0 0 var(--space-3);
+    }
+    .hero .lead {
+      font-size: var(--text-lead);
+      color: var(--color-text-muted);
+      max-width: 36rem;
+      margin: 0 auto var(--space-5);
+    }
+    .hero .cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-3);
+      justify-content: center;
+    }
+    section.block {
+      padding: var(--space-6) 0;
+      border-top: 1px solid var(--color-border);
+    }
+    section.block h2 {
+      font-family: var(--font-display);
+      font-weight: 500;
+      font-size: var(--text-h2);
+      line-height: var(--leading-snug);
+      margin: 0 0 var(--space-4);
+    }
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+      gap: var(--space-4);
+    }
+    .card {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius);
+      padding: var(--space-4);
+    }
+    .card h3 {
+      font-family: var(--font-display);
+      font-weight: 500;
+      font-size: var(--text-h3);
+      margin: 0 0 var(--space-2);
+    }
+    .card p {
+      margin: 0;
+      color: var(--color-text-muted);
+      font-size: var(--text-small);
+    }
+    .about-copy p {
+      max-width: 40rem;
+      margin: 0 0 var(--space-3);
+    }
+    .cta-band {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius);
+      padding: var(--space-5);
+      text-align: center;
+      margin: var(--space-6) 0;
+    }
+    .cta-band h2 {
+      font-family: var(--font-display);
+      font-weight: 500;
+      font-size: var(--text-h3);
+      margin: 0 0 var(--space-3);
+    }
+    .cta-band p {
+      color: var(--color-text-muted);
+      margin: 0 0 var(--space-4);
+    }
+    footer.site {
+      border-top: 1px solid var(--color-border);
+      padding: var(--space-5) 0 var(--space-6);
+      font-size: var(--text-small);
+      color: var(--color-text-muted);
+    }
+    footer.site .foot-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-4);
+      justify-content: space-between;
+      align-items: flex-start;
+    }
+    footer.site img.logo { height: 1.5rem; opacity: 0.85; margin-bottom: var(--space-2); }
+    footer.site a { color: var(--color-accent); }
+    .contact-block { margin-top: var(--space-2); line-height: 1.6; }
+    .placeholder-note {
+      display: inline-block;
+      margin-top: var(--space-2);
+      padding: 0.15rem 0.5rem;
+      border: 1px dashed var(--color-border);
+      border-radius: var(--radius);
+      font-size: 0.7rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--color-accent);
+    }
+  </style>
+</head>
+<body>
+  <div class="draft-banner">The Planners · site preview</div>
+
+  <div class="wrap">
+    <header class="site">
+      <a href="index.html" aria-label="The Planners home">
+        <img class="logo" src="assets/logo-wordmark-light.svg" alt="The Planners" />
+      </a>
+      <nav aria-label="Primary">
+        <a href="index.html" aria-current="page">Home</a>
+        <a href="services.html">Services</a>
+        <a href="about.html">About</a>
+        <a href="portfolio.html">Portfolio</a>
+        <a href="inquiry.html">Contact</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero">
+        <p class="placeholder-note">Home</p>
+        <h1>Occasions that feel considered, calm, and distinctly yours.</h1>
+        <p class="lead">
+          An event planning studio bringing structure to beauty—so hosts can stay present while every detail lands with intention.
+        </p>
+        <div class="cta-row">
+          <a class="btn btn-primary" href="inquiry.html">Book a Consult</a>
+          <a class="btn btn-secondary" href="services.html">Explore services</a>
+        </div>
+      </section>
+
+      <section class="block">
+        <h2>Services</h2>
+        <div class="card-grid">
+          <div class="card">
+            <h3>Full &amp; partial planning</h3>
+            <p>From comprehensive planning to focused support for the pieces that matter most.</p>
+          </div>
+          <div class="card">
+            <h3>Day-of coordination</h3>
+            <p>On-site presence so the celebration runs calmly and on time.</p>
+          </div>
+          <div class="card">
+            <h3>Design &amp; vendors</h3>
+            <p>Design direction, vendor liaison, and timeline management.</p>
+          </div>
+          <div class="card">
+            <h3>Décor &amp; rentals</h3>
+            <p>Styling and rentals support—overview only; no SKUs or public prices.</p>
+          </div>
+        </div>
+        <p style="margin-top:var(--space-4);"><a class="btn btn-secondary" href="services.html">View all services</a></p>
+      </section>
+
+      <section class="block">
+        <h2>Selected work</h2>
+        <div class="card-grid">
+          <div class="card"><h3>Wedding</h3><p>Spring · intimate gathering</p></div>
+          <div class="card"><h3>Milestone celebration</h3><p>Autumn · evening reception</p></div>
+          <div class="card"><h3>Private gathering</h3><p>Winter · refined dinner</p></div>
+        </div>
+        <p style="margin-top:var(--space-4);"><a class="btn btn-secondary" href="portfolio.html">View portfolio</a></p>
+      </section>
+
+      <section class="block">
+        <h2>About the studio</h2>
+        <div class="about-copy">
+          <p>
+            The Planners is an event planning studio dedicated to occasions that feel considered, calm, and distinctly yours. From first conversation through the day of celebration, we bring structure to beauty—so hosts can stay present while every detail lands with intention.
+          </p>
+          <p><a class="btn btn-secondary" href="about.html">Read more</a></p>
+        </div>
+      </section>
+
+      <div class="cta-band">
+        <h2>Ready to begin?</h2>
+        <p>Share a few details about your occasion, or reach out directly.</p>
+        <a class="btn btn-primary" href="inquiry.html">Inquire</a>
+      </div>
+    </main>
+
+    <footer class="site">
+      <div class="foot-row">
+        <div>
+          <img class="logo" src="assets/logo-wordmark-light.svg" alt="" />
+          <p>© The Planners</p>
+          <div class="contact-block">
+            Muhammad Awais Malik · Islamabad<br />
+            <a href="tel:+923170159441">+92 317 0159441</a> ·
+            <a href="mailto:abdulmoeed095@gmail.com">abdulmoeed095@gmail.com</a><br />
+            LinkedIn — coming soon
+          </div>
+        </div>
+        <nav aria-label="Footer">
+          <a href="index.html">Home</a>
+          <a href="services.html">Services</a>
+          <a href="about.html">About</a>
+          <a href="portfolio.html">Portfolio</a>
+          <a href="inquiry.html">Contact</a>
+        </nav>
+      </div>
+    </footer>
+  </div>
+</body>
+</html>

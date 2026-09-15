@@ -1,0 +1,13 @@
+[build]
+  publish = "."
+
+# Static HTML — no build command required.
+# Optional: uncomment if you add a build step later.
+# command = ""
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"

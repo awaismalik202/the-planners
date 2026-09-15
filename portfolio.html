@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>The Planners — Portfolio</title>
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="icon" href="assets/favicon-draft.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/tokens.css" />
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: var(--font-sans);
+      font-size: var(--text-body);
+      line-height: var(--leading-normal);
+      background: var(--color-bg);
+      color: var(--color-text);
+    }
+    .draft-banner {
+      background: var(--color-surface, #f5f3ef);
+      color: var(--color-muted, #6b6560);
+      text-align: center;
+      padding: 0.35rem 1rem;
+      font-size: 0.7rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      font-weight: 500;
+      border-bottom: 1px solid var(--color-border, #e5e1da);
+    }
+    .wrap {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 var(--gutter);
+    }
+    header.site {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-4);
+      padding: var(--space-4) 0;
+      border-bottom: 1px solid var(--color-border);
+      flex-wrap: wrap;
+    }
+    header.site img.logo { height: 2rem; width: auto; display: block; }
+    nav a {
+      color: var(--color-text-muted);
+      text-decoration: none;
+      font-size: var(--text-small);
+      margin-left: var(--space-3);
+      font-weight: 500;
+    }
+    nav a:hover, nav a[aria-current="page"] { color: var(--color-text); }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-sans);
+      font-weight: 600;
+      font-size: 0.9375rem;
+      padding: 0.75rem 1.5rem;
+      border-radius: var(--radius);
+      border: 1px solid transparent;
+      text-decoration: none;
+      letter-spacing: 0.01em;
+    }
+    .btn-primary { background: var(--color-accent); color: #fff; }
+    .btn-primary:hover { background: #2f392d; }
+    .page-intro { padding: var(--space-6) 0 var(--space-4); }
+    .page-intro h1 {
+      font-family: var(--font-display);
+      font-weight: 500;
+      font-size: var(--text-h1);
+      line-height: var(--leading-tight);
+      margin: 0 0 var(--space-3);
+    }
+    .page-intro .lead {
+      font-size: var(--text-lead);
+      color: var(--color-text-muted);
+      max-width: 40rem;
+      margin: 0;
+    }
+    .placeholder-note {
+      display: inline-block;
+      margin-bottom: var(--space-3);
+      padding: 0.15rem 0.5rem;
+      border: 1px dashed var(--color-border);
+      border-radius: var(--radius);
+      font-size: 0.7rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--color-accent);
+    }
+    .tile-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+      gap: var(--space-4);
+      padding: var(--space-4) 0 var(--space-6);
+    }
+    .tile {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius);
+      overflow: hidden;
+    }
+    .tile-visual {
+      height: 10rem;
+      background: linear-gradient(135deg, var(--color-primary, #D4C4A8) 0%, #c4b498 50%, #3D4A3A 100%);
+      opacity: 0.55;
+    }
+    .tile-body { padding: var(--space-4); }
+    .tile-body h2 {
+      font-family: var(--font-display);
+      font-weight: 500;
+      font-size: var(--text-h3);
+      margin: 0 0 var(--space-2);
+    }
+    .tile-body p {
+      margin: 0;
+      color: var(--color-text-muted);
+      font-size: var(--text-small);
+    }
+    .tile-meta {
+      margin-top: var(--space-2);
+      font-size: 0.7rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--color-accent);
+    }
+    .cta-band {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius);
+      padding: var(--space-5);
+      text-align: center;
+      margin: var(--space-5) 0 var(--space-6);
+    }
+    .cta-band h2 {
+      font-family: var(--font-display);
+      font-weight: 500;
+      font-size: var(--text-h3);
+      margin: 0 0 var(--space-3);
+    }
+    .cta-band p {
+      color: var(--color-text-muted);
+      margin: 0 0 var(--space-4);
+    }
+    footer.site {
+      border-top: 1px solid var(--color-border);
+      padding: var(--space-5) 0 var(--space-6);
+      font-size: var(--text-small);
+      color: var(--color-text-muted);
+    }
+    footer.site .foot-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-4);
+      justify-content: space-between;
+      align-items: flex-start;
+    }
+    footer.site img.logo { height: 1.5rem; opacity: 0.85; margin-bottom: var(--space-2); }
+    footer.site a { color: var(--color-accent); }
+    .contact-block { margin-top: var(--space-2); line-height: 1.6; }
+  </style>
+</head>
+<body>
+  <div class="draft-banner">The Planners · site preview</div>
+
+  <div class="wrap">
+    <header class="site">
+      <a href="index.html" aria-label="The Planners home">
+        <img class="logo" src="assets/logo-wordmark-light.svg" alt="The Planners" />
+      </a>
+      <nav aria-label="Primary">
+        <a href="index.html">Home</a>
+        <a href="services.html">Services</a>
+        <a href="about.html">About</a>
+        <a href="portfolio.html" aria-current="page">Portfolio</a>
+        <a href="inquiry.html">Contact</a>
+      </nav>
+    </header>
+
+    <main>
+      <div class="page-intro">
+        <p class="placeholder-note">Portfolio</p>
+        <h1>Portfolio</h1>
+        <p class="lead">
+          A curated look at the kinds of occasions we plan. Placeholder tiles show event type and season only—no client names.
+        </p>
+      </div>
+
+      <!-- Placeholder tiles: type / season only. No client names, budgets, or private details. -->
+      <div class="tile-grid">
+        <article class="tile">
+          <div class="tile-visual" aria-hidden="true"></div>
+          <div class="tile-body">
+            <h2>Wedding</h2>
+            <p>Intimate ceremony and reception</p>
+            <p class="tile-meta">Spring</p>
+          </div>
+        </article>
+        <article class="tile">
+          <div class="tile-visual" aria-hidden="true"></div>
+          <div class="tile-body">
+            <h2>Milestone celebration</h2>
+            <p>Evening gathering</p>
+            <p class="tile-meta">Autumn</p>
+          </div>
+        </article>
+        <article class="tile">
+          <div class="tile-visual" aria-hidden="true"></div>
+          <div class="tile-body">
+            <h2>Private dinner</h2>
+            <p>Refined seated occasion</p>
+            <p class="tile-meta">Winter</p>
+          </div>
+        </article>
+        <article class="tile">
+          <div class="tile-visual" aria-hidden="true"></div>
+          <div class="tile-body">
+            <h2>Corporate gathering</h2>
+            <p>Polished hosted event</p>
+            <p class="tile-meta">Summer</p>
+          </div>
+        </article>
+        <article class="tile">
+          <div class="tile-visual" aria-hidden="true"></div>
+          <div class="tile-body">
+            <h2>Wedding</h2>
+            <p>Garden celebration</p>
+            <p class="tile-meta">Late summer</p>
+          </div>
+        </article>
+        <article class="tile">
+          <div class="tile-visual" aria-hidden="true"></div>
+          <div class="tile-body">
+            <h2>Private celebration</h2>
+            <p>Daytime reception</p>
+            <p class="tile-meta">Spring</p>
+          </div>
+        </article>
+      </div>
+
+      <div class="cta-band">
+        <h2>Plan something beautiful with us</h2>
+        <p>Tell us about your occasion—we will follow up to schedule a consult.</p>
+        <a class="btn btn-primary" href="inquiry.html">Inquire</a>
+      </div>
+    </main>
+
+    <footer class="site">
+      <div class="foot-row">
+        <div>
+          <img class="logo" src="assets/logo-wordmark-light.svg" alt="" />
+          <p>© The Planners</p>
+          <div class="contact-block">
+            Muhammad Awais Malik · Islamabad<br />
+            <a href="tel:+923170159441">+92 317 0159441</a> ·
+            <a href="mailto:abdulmoeed095@gmail.com">abdulmoeed095@gmail.com</a><br />
+            LinkedIn — coming soon
+          </div>
+        </div>
+        <nav aria-label="Footer">
+          <a href="index.html">Home</a>
+          <a href="services.html">Services</a>
+          <a href="about.html">About</a>
+          <a href="portfolio.html">Portfolio</a>
+          <a href="inquiry.html">Contact</a>
+        </nav>
+      </div>
+    </footer>
+  </div>
+</body>
+</html>
