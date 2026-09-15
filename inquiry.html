@@ -3,6 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Inquire with The Planners. Share a few details about your occasion—we’ll reply within 1 business day." />
   <title>The Planners — Contact / Inquiry</title>
   <meta name="robots" content="noindex, nofollow" />
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
@@ -15,6 +16,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@500;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="assets/tokens.css" />
+  <link rel="stylesheet" href="assets/site.css" />
   <style>
     * { box-sizing: border-box; }
     body {
@@ -25,40 +27,11 @@
       background: var(--color-bg);
       color: var(--color-text);
     }
-    .draft-banner {
-      background: var(--color-surface, #f5f3ef);
-      color: var(--color-muted, #6b6560);
-      text-align: center;
-      padding: 0.35rem 1rem;
-      font-size: 0.7rem;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      font-weight: 500;
-      border-bottom: 1px solid var(--color-border, #e5e1da);
-    }
     .wrap {
       max-width: var(--max-width);
       margin: 0 auto;
       padding: 0 var(--gutter);
     }
-    header.site {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: var(--space-4);
-      padding: var(--space-4) 0;
-      border-bottom: 1px solid var(--color-border);
-      flex-wrap: wrap;
-    }
-    header.site img.logo { height: 2rem; width: auto; display: block; }
-    nav a {
-      color: var(--color-text-muted);
-      text-decoration: none;
-      font-size: var(--text-small);
-      margin-left: var(--space-3);
-      font-weight: 500;
-    }
-    nav a:hover, nav a[aria-current="page"] { color: var(--color-text); }
     .layout {
       display: grid;
       grid-template-columns: 1fr;
@@ -79,17 +52,6 @@
       color: var(--color-text-muted);
       margin: 0 0 var(--space-4);
     }
-    .placeholder-note {
-      display: inline-block;
-      margin-bottom: var(--space-3);
-      padding: 0.15rem 0.5rem;
-      border: 1px dashed var(--color-border);
-      border-radius: var(--radius);
-      font-size: 0.7rem;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      color: var(--color-accent);
-    }
     .contact-card {
       background: var(--color-surface);
       border: 1px solid var(--color-border);
@@ -105,6 +67,48 @@
     }
     .contact-card p { margin: 0 0 var(--space-2); line-height: 1.6; }
     .contact-card a { color: var(--color-accent); }
+
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+    fieldset.date-xor {
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius);
+      padding: var(--space-3);
+      margin: 0;
+    }
+    fieldset.date-xor legend {
+      font-weight: 600;
+      font-size: var(--text-small);
+      padding: 0 var(--space-1);
+    }
+    .date-xor .check-row {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-top: var(--space-3);
+      font-weight: 400;
+    }
+    .date-xor .check-row input { width: auto; }
+    .form-error {
+      display: none;
+      margin: 0 0 var(--space-3);
+      padding: var(--space-3);
+      border: 1px solid #8b3a3a;
+      background: #faf2f2;
+      color: #5c2020;
+      border-radius: var(--radius);
+      font-size: var(--text-small);
+    }
+    .form-error.is-visible { display: block; }
     form.inquiry {
       background: var(--color-surface);
       border: 1px solid var(--color-border);
@@ -152,20 +156,12 @@
       margin-top: var(--space-1);
     }
     .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      font-family: var(--font-sans);
-      font-weight: 600;
-      font-size: 0.9375rem;
-      padding: 0.75rem 1.5rem;
-      border-radius: var(--radius);
-      border: 1px solid transparent;
+      /* shared styles in site.css; keep local submit color fallback */
       background: var(--color-accent);
       color: #fff;
-      cursor: pointer;
+      border-color: var(--color-accent);
     }
-    .btn:hover { background: #2f392d; }
+    .btn:hover { background: #2f392d; border-color: #2f392d; color: #fff; }
     .form-note {
       margin-top: var(--space-4);
       font-size: var(--text-small);
@@ -190,14 +186,16 @@
   </style>
 </head>
 <body>
-  <div class="draft-banner">The Planners · site preview</div>
-
   <div class="wrap">
+    <a class="skip-link" href="#main">Skip to content</a>
     <header class="site">
       <a href="index.html" aria-label="The Planners home">
         <img class="logo" src="assets/logo-wordmark-light.svg" alt="The Planners" />
       </a>
-      <nav aria-label="Primary">
+      <button type="button" class="nav-toggle" aria-expanded="false" aria-controls="primary-nav" aria-label="Open menu">
+        <span class="nav-toggle-bars" aria-hidden="true"><span></span><span></span><span></span></span>
+      </button>
+      <nav id="primary-nav" class="primary-nav" aria-label="Primary">
         <a href="index.html">Home</a>
         <a href="services.html">Services</a>
         <a href="about.html">About</a>
@@ -206,10 +204,9 @@
       </nav>
     </header>
 
-    <main class="layout">
+    <main id="main" class="layout">
       <div>
-        <p class="placeholder-note">Contact / Inquiry</p>
-        <h1>Contact</h1>
+<h1>Contact</h1>
         <p class="intro">
           Reach out directly, or use the inquiry form. Required fields match Monica’s locked ops map.
           <strong>We’ll reply within 1 business day.</strong>
@@ -226,16 +223,19 @@
       </div>
 
       <!-- Fields per inquiry-form.md (Monica lock). Intake: mailto abdulmoeed095@gmail.com -->
-      <form class="inquiry" id="inquiry-form" action="mailto:abdulmoeed095@gmail.com" method="post" enctype="text/plain" onsubmit="return validateInquiry(event);">
+      <form class="inquiry" id="inquiry-form" action="mailto:abdulmoeed095@gmail.com" method="post" enctype="text/plain" novalidate>
+        <p class="hint" id="form-req-note" style="margin-top:0;margin-bottom:var(--space-4);">Required fields are marked with an asterisk (<span aria-hidden="true">*</span>).</p>
+        <div class="form-error" id="form-error" role="alert" tabindex="-1"></div>
+
         <div class="field">
-          <label for="name">Name <span class="req">*</span></label>
-          <input id="name" name="name" type="text" required autocomplete="name" />
+          <label for="name">Name <span class="req" aria-hidden="true">*</span><span class="sr-only"> (required)</span></label>
+          <input id="name" name="name" type="text" required aria-required="true" autocomplete="name" />
         </div>
 
         <div class="field">
-          <label for="email">Email <span class="req">*</span></label>
-          <input id="email" name="email" type="email" required autocomplete="email" />
-          <p class="hint">Primary contact. Phone is optional — submit succeeds with email only.</p>
+          <label for="email">Email <span class="req" aria-hidden="true">*</span><span class="sr-only"> (required)</span></label>
+          <input id="email" name="email" type="email" required aria-required="true" autocomplete="email" aria-describedby="email-hint" />
+          <p class="hint" id="email-hint">Primary contact. Phone is optional — submit succeeds with email only.</p>
         </div>
 
         <div class="field">
@@ -244,8 +244,8 @@
         </div>
 
         <div class="field">
-          <label for="event-type">Event type <span class="req">*</span></label>
-          <select id="event-type" name="event_type" required>
+          <label for="event-type">Event type <span class="req" aria-hidden="true">*</span><span class="sr-only"> (required)</span></label>
+          <select id="event-type" name="event_type" required aria-required="true">
             <option value="">Select…</option>
             <option value="wedding">Wedding</option>
             <option value="engagement-mehndi-walima">Engagement / Mehndi / Walima</option>
@@ -256,13 +256,16 @@
         </div>
 
         <div class="field">
-          <label for="event-date">Date <span class="req">*</span></label>
-          <input id="event-date" name="event_date" type="date" />
-          <label style="margin-top:0.5rem;font-weight:400;">
-            <input type="checkbox" id="date-flexible" name="date_flexible" value="TBD / flexible" />
-            TBD / flexible
-          </label>
-          <p class="hint">Required: choose a specific date <strong>or</strong> TBD / flexible (one of the two).</p>
+          <fieldset class="date-xor">
+            <legend>Event date <span class="req" aria-hidden="true">*</span><span class="sr-only"> (required: choose a date or TBD)</span></legend>
+            <label for="event-date" class="sr-only">Specific date</label>
+            <input id="event-date" name="event_date" type="date" aria-describedby="date-hint" />
+            <label class="check-row" for="date-flexible">
+              <input type="checkbox" id="date-flexible" name="date_flexible" value="TBD / flexible" />
+              TBD / flexible
+            </label>
+            <p class="hint" id="date-hint">Required: choose a specific date <strong>or</strong> TBD / flexible (one of the two).</p>
+          </fieldset>
         </div>
 
         <div class="field">
@@ -283,7 +286,7 @@
 
         <div class="field">
           <label for="budget">Budget range <span class="opt">(optional)</span></label>
-          <select id="budget" name="budget_range">
+          <select id="budget" name="budget_range" aria-describedby="budget-hint">
             <option value="">Select…</option>
             <option value="prefer-discuss">Prefer to discuss</option>
             <option value="under-5l">Under PKR 5L</option>
@@ -291,7 +294,7 @@
             <option value="15-40l">15–40L</option>
             <option value="40l-plus">40L+</option>
           </select>
-          <p class="hint">Never publish budget on public pages.</p>
+          <p class="hint" id="budget-hint">Never publish budget on public pages.</p>
         </div>
 
         <div class="field">
@@ -301,11 +304,11 @@
 
         <div class="field">
           <label for="notes">Anything else <span class="opt">(optional)</span></label>
-          <textarea id="notes" name="free_text" rows="4" placeholder="Constraints, must-haves, questions…"></textarea>
-          <p class="hint">Please do not paste sensitive documents into this field.</p>
+          <textarea id="notes" name="free_text" rows="4" placeholder="Constraints, must-haves, questions…" aria-describedby="notes-hint"></textarea>
+          <p class="hint" id="notes-hint">Please do not paste sensitive documents into this field.</p>
         </div>
 
-        <button class="btn" type="submit">Send inquiry</button>
+        <button class="btn btn-primary" type="submit">Send inquiry</button>
         <p class="form-note">
           <strong>We’ll reply within 1 business day.</strong>
           Submissions go to <a href="mailto:abdulmoeed095@gmail.com">abdulmoeed095@gmail.com</a> (mailto intake).
@@ -341,36 +344,76 @@
     (function () {
       var dateInput = document.getElementById('event-date');
       var flexible = document.getElementById('date-flexible');
-      if (!dateInput || !flexible) return;
+      var form = document.getElementById('inquiry-form');
+      var err = document.getElementById('form-error');
+      if (!dateInput || !flexible || !form) return;
+
       function syncDateMode() {
         if (flexible.checked) {
           dateInput.value = '';
           dateInput.disabled = true;
           dateInput.removeAttribute('required');
+          dateInput.setAttribute('aria-required', 'false');
         } else {
           dateInput.disabled = false;
+          dateInput.setAttribute('aria-required', 'true');
         }
       }
+
       flexible.addEventListener('change', syncDateMode);
       dateInput.addEventListener('input', function () {
         if (dateInput.value) flexible.checked = false;
         syncDateMode();
       });
       syncDateMode();
-    })();
-    function validateInquiry(event) {
-      var dateInput = document.getElementById('event-date');
-      var flexible = document.getElementById('date-flexible');
-      var hasDate = dateInput && !dateInput.disabled && dateInput.value;
-      var hasFlex = flexible && flexible.checked;
-      if (!hasDate && !hasFlex) {
-        event.preventDefault();
-        alert('Please choose a date or select TBD / flexible.');
-        return false;
+
+      function showError(msg) {
+        if (!err) return;
+        err.textContent = msg;
+        err.classList.add('is-visible');
+        err.focus();
       }
-      // mailto opens the visitor's email client for intake
-      return true;
-    }
+      function clearError() {
+        if (!err) return;
+        err.textContent = '';
+        err.classList.remove('is-visible');
+      }
+
+      form.addEventListener('submit', function (event) {
+        clearError();
+        var name = document.getElementById('name');
+        var email = document.getElementById('email');
+        var eventType = document.getElementById('event-type');
+        if (!name.value.trim()) {
+          event.preventDefault();
+          showError('Please enter your name.');
+          name.focus();
+          return;
+        }
+        if (!email.value.trim()) {
+          event.preventDefault();
+          showError('Please enter your email.');
+          email.focus();
+          return;
+        }
+        if (!eventType.value) {
+          event.preventDefault();
+          showError('Please select an event type.');
+          eventType.focus();
+          return;
+        }
+        var hasDate = !dateInput.disabled && dateInput.value;
+        var hasFlex = flexible.checked;
+        if (!hasDate && !hasFlex) {
+          event.preventDefault();
+          showError('Please choose a date or select TBD / flexible.');
+          dateInput.focus();
+          return;
+        }
+        // mailto opens the visitor's email client for intake
+      });
+    })();
   </script>
+  <script src="assets/nav.js" defer></script>
 </body>
 </html>

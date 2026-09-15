@@ -3,6 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Full and partial planning, day-of coordination, design direction, vendor liaison, and décor & rentals—service overviews only." />
   <title>The Planners — Services</title>
   <meta name="robots" content="noindex, nofollow" />
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
@@ -15,6 +16,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@500;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="assets/tokens.css" />
+  <link rel="stylesheet" href="assets/site.css" />
   <style>
     * { box-sizing: border-box; }
     body {
@@ -25,55 +27,11 @@
       background: var(--color-bg);
       color: var(--color-text);
     }
-    .draft-banner {
-      background: var(--color-surface, #f5f3ef);
-      color: var(--color-muted, #6b6560);
-      text-align: center;
-      padding: 0.35rem 1rem;
-      font-size: 0.7rem;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      font-weight: 500;
-      border-bottom: 1px solid var(--color-border, #e5e1da);
-    }
     .wrap {
       max-width: var(--max-width);
       margin: 0 auto;
       padding: 0 var(--gutter);
     }
-    header.site {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: var(--space-4);
-      padding: var(--space-4) 0;
-      border-bottom: 1px solid var(--color-border);
-      flex-wrap: wrap;
-    }
-    header.site img.logo { height: 2rem; width: auto; display: block; }
-    nav a {
-      color: var(--color-text-muted);
-      text-decoration: none;
-      font-size: var(--text-small);
-      margin-left: var(--space-3);
-      font-weight: 500;
-    }
-    nav a:hover, nav a[aria-current="page"] { color: var(--color-text); }
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      font-family: var(--font-sans);
-      font-weight: 600;
-      font-size: 0.9375rem;
-      padding: 0.75rem 1.5rem;
-      border-radius: var(--radius);
-      border: 1px solid transparent;
-      text-decoration: none;
-      letter-spacing: 0.01em;
-    }
-    .btn-primary { background: var(--color-accent); color: #fff; }
-    .btn-primary:hover { background: #2f392d; }
     .page-intro { padding: var(--space-6) 0 var(--space-4); }
     .page-intro h1 {
       font-family: var(--font-display);
@@ -87,17 +45,6 @@
       color: var(--color-text-muted);
       max-width: 40rem;
       margin: 0;
-    }
-    .placeholder-note {
-      display: inline-block;
-      margin-bottom: var(--space-3);
-      padding: 0.15rem 0.5rem;
-      border: 1px dashed var(--color-border);
-      border-radius: var(--radius);
-      font-size: 0.7rem;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      color: var(--color-accent);
     }
     section.block {
       padding: var(--space-5) 0;
@@ -166,14 +113,16 @@
   </style>
 </head>
 <body>
-  <div class="draft-banner">The Planners · site preview</div>
-
   <div class="wrap">
+    <a class="skip-link" href="#main">Skip to content</a>
     <header class="site">
       <a href="index.html" aria-label="The Planners home">
         <img class="logo" src="assets/logo-wordmark-light.svg" alt="The Planners" />
       </a>
-      <nav aria-label="Primary">
+      <button type="button" class="nav-toggle" aria-expanded="false" aria-controls="primary-nav" aria-label="Open menu">
+        <span class="nav-toggle-bars" aria-hidden="true"><span></span><span></span><span></span></span>
+      </button>
+      <nav id="primary-nav" class="primary-nav" aria-label="Primary">
         <a href="index.html">Home</a>
         <a href="services.html" aria-current="page">Services</a>
         <a href="about.html">About</a>
@@ -182,10 +131,9 @@
       </nav>
     </header>
 
-    <main>
+    <main id="main">
       <div class="page-intro">
-        <p class="placeholder-note">Services</p>
-        <h1>Services</h1>
+<h1>Services</h1>
         <p class="lead">
           Clarity as much as creativity: thoughtful timelines, careful vendor coordination, décor &amp; rentals support, and a polished presence—whether you need full planning or focused support. Service overviews only; no SKUs or public prices.
         </p>
@@ -259,5 +207,6 @@
       </div>
     </footer>
   </div>
+  <script src="assets/nav.js" defer></script>
 </body>
 </html>
