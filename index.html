@@ -134,23 +134,25 @@
     }
     @media (max-width: 720px) {
       .hero {
-        min-height: clamp(34rem, 145vw, 44rem);
+        /* Keep plate aspect so empty top field stays for Playfair */
+        min-height: 0;
+        aspect-ratio: 1080 / 1350;
         align-items: flex-start;
-        padding-top: clamp(2.25rem, 7vw, 3rem);
-        padding-bottom: clamp(2rem, 8vw, 3rem);
+        padding-top: clamp(1.75rem, 6vw, 2.5rem);
+        padding-bottom: clamp(1.5rem, 6vw, 2.25rem);
       }
       .hero::before {
         background-image: url("assets/hero/home-hero-mughal-pearl-palace-mobile.jpg");
         background-position: center top;
-        background-size: cover;
+        background-size: 100% auto;
       }
       .hero::after {
         background: linear-gradient(
           180deg,
-          rgba(247, 243, 237, 0.88) 0%,
-          rgba(247, 243, 237, 0.7) 22%,
-          rgba(247, 243, 237, 0.28) 38%,
-          transparent 52%
+          rgba(247, 243, 237, 0.92) 0%,
+          rgba(247, 243, 237, 0.78) 18%,
+          rgba(247, 243, 237, 0.35) 32%,
+          transparent 46%
         );
       }
       .hero-copy {
@@ -161,11 +163,12 @@
         max-width: 16ch;
         margin-left: auto;
         margin-right: auto;
-        font-size: clamp(1.85rem, 7.5vw, 2.4rem);
+        font-size: clamp(1.75rem, 7vw, 2.25rem);
       }
       .hero .lead {
         margin-left: auto;
         margin-right: auto;
+        font-size: 1.05rem;
       }
       .hero .cta-row { justify-content: center; }
     }
