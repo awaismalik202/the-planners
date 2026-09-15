@@ -93,14 +93,15 @@
       overflow: hidden;
     }
     .tile-visual {
-      height: 12rem;
+      aspect-ratio: 4 / 5;
       overflow: hidden;
       background: var(--color-primary-light);
     }
     .tile-visual img {
       width: 100%;
       height: 100%;
-      object-fit: cover;
+      object-fit: contain;
+      object-position: center;
       display: block;
     }
     .tile-body { padding: var(--space-4); }
@@ -187,81 +188,117 @@
 
       <div class="tile-grid">
         <article class="tile">
-          <div class="tile-visual">
+          <button type="button" class="tile-visual lightbox-trigger"
+            data-lightbox="assets/portfolio/mughal-pearl-palace.jpg"
+            data-lightbox-alt="Mughal Pearl Palace stage design"
+            data-lightbox-title="Mughal Pearl Palace"
+            aria-label="View full image: Mughal Pearl Palace">
             <img src="assets/portfolio/mughal-pearl-palace.jpg" alt="Mughal Pearl Palace stage design" loading="lazy" />
-          </div>
+          </button>
           <div class="tile-body">
             <h2>Mughal Pearl Palace</h2>
             <p class="tile-meta">Stage design</p>
           </div>
         </article>
         <article class="tile">
-          <div class="tile-visual">
+          <button type="button" class="tile-visual lightbox-trigger"
+            data-lightbox="assets/portfolio/sunehri-sheesh-mahal.jpg"
+            data-lightbox-alt="Sunehri Sheesh Mahal stage design"
+            data-lightbox-title="Sunehri Sheesh Mahal"
+            aria-label="View full image: Sunehri Sheesh Mahal">
             <img src="assets/portfolio/sunehri-sheesh-mahal.jpg" alt="Sunehri Sheesh Mahal stage design" loading="lazy" />
-          </div>
+          </button>
           <div class="tile-body">
             <h2>Sunehri Sheesh Mahal</h2>
             <p class="tile-meta">Stage design</p>
           </div>
         </article>
         <article class="tile">
-          <div class="tile-visual">
+          <button type="button" class="tile-visual lightbox-trigger"
+            data-lightbox="assets/portfolio/noor-e-mahal.jpg"
+            data-lightbox-alt="Noor-e-Mahal stage design"
+            data-lightbox-title="Noor-e-Mahal"
+            aria-label="View full image: Noor-e-Mahal">
             <img src="assets/portfolio/noor-e-mahal.jpg" alt="Noor-e-Mahal stage design" loading="lazy" />
-          </div>
+          </button>
           <div class="tile-body">
             <h2>Noor-e-Mahal</h2>
             <p class="tile-meta">Stage design</p>
           </div>
         </article>
         <article class="tile">
-          <div class="tile-visual">
+          <button type="button" class="tile-visual lightbox-trigger"
+            data-lightbox="assets/portfolio/arabic-regal.jpg"
+            data-lightbox-alt="Arabic Regal stage design"
+            data-lightbox-title="Arabic Regal"
+            aria-label="View full image: Arabic Regal">
             <img src="assets/portfolio/arabic-regal.jpg" alt="Arabic Regal stage design" loading="lazy" />
-          </div>
+          </button>
           <div class="tile-body">
             <h2>Arabic Regal</h2>
             <p class="tile-meta">Stage design</p>
           </div>
         </article>
         <article class="tile">
-          <div class="tile-visual">
+          <button type="button" class="tile-visual lightbox-trigger"
+            data-lightbox="assets/portfolio/mughal-legacy.jpg"
+            data-lightbox-alt="Mughal Legacy stage design"
+            data-lightbox-title="Mughal Legacy"
+            aria-label="View full image: Mughal Legacy">
             <img src="assets/portfolio/mughal-legacy.jpg" alt="Mughal Legacy stage design" loading="lazy" />
-          </div>
+          </button>
           <div class="tile-body">
             <h2>Mughal Legacy</h2>
             <p class="tile-meta">Stage design</p>
           </div>
         </article>
         <article class="tile">
-          <div class="tile-visual">
+          <button type="button" class="tile-visual lightbox-trigger"
+            data-lightbox="assets/portfolio/imperial-aureus.jpg"
+            data-lightbox-alt="Imperial Aureus stage design"
+            data-lightbox-title="Imperial Aureus"
+            aria-label="View full image: Imperial Aureus">
             <img src="assets/portfolio/imperial-aureus.jpg" alt="Imperial Aureus stage design" loading="lazy" />
-          </div>
+          </button>
           <div class="tile-body">
             <h2>Imperial Aureus</h2>
             <p class="tile-meta">Stage design</p>
           </div>
         </article>
         <article class="tile">
-          <div class="tile-visual">
+          <button type="button" class="tile-visual lightbox-trigger"
+            data-lightbox="assets/portfolio/royal-elegance.jpg"
+            data-lightbox-alt="Royal Elegance stage design"
+            data-lightbox-title="Royal Elegance"
+            aria-label="View full image: Royal Elegance">
             <img src="assets/portfolio/royal-elegance.jpg" alt="Royal Elegance stage design" loading="lazy" />
-          </div>
+          </button>
           <div class="tile-body">
             <h2>Royal Elegance</h2>
             <p class="tile-meta">Stage design</p>
           </div>
         </article>
         <article class="tile">
-          <div class="tile-visual">
+          <button type="button" class="tile-visual lightbox-trigger"
+            data-lightbox="assets/portfolio/floral-pillars.jpg"
+            data-lightbox-alt="Floral Pillars stage design"
+            data-lightbox-title="Floral Pillars"
+            aria-label="View full image: Floral Pillars">
             <img src="assets/portfolio/floral-pillars.jpg" alt="Floral Pillars stage design" loading="lazy" />
-          </div>
+          </button>
           <div class="tile-body">
             <h2>Floral Pillars</h2>
             <p class="tile-meta">Stage design</p>
           </div>
         </article>
         <article class="tile">
-          <div class="tile-visual">
+          <button type="button" class="tile-visual lightbox-trigger"
+            data-lightbox="assets/portfolio/via-roma-classic.jpg"
+            data-lightbox-alt="Via Roma Classic stage design"
+            data-lightbox-title="Via Roma Classic"
+            aria-label="View full image: Via Roma Classic">
             <img src="assets/portfolio/via-roma-classic.jpg" alt="Via Roma Classic stage design" loading="lazy" />
-          </div>
+          </button>
           <div class="tile-body">
             <h2>Via Roma Classic</h2>
             <p class="tile-meta">Stage design</p>
@@ -300,5 +337,6 @@
     </footer>
   </div>
   <script src="assets/nav.js" defer></script>
+  <script src="assets/lightbox.js" defer></script>
 </body>
 </html>
